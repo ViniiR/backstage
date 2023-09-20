@@ -3,38 +3,112 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap');
 
 * {
-    font-family: 'open sans';
+    font-family: 'Open sans';
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+body {
+    transition: background-color linear .5s;
+    background-color: #ff608c;
+    #line {
+        z-index: 99;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        top: 40px;
+        height: 1px;
+        display: none;
+    }
+    a {
+        color: white;
+        transition: color linear .5s;
+    }
 }
 
 header {
-    padding: 10px 10px 10px 20px;
-    h1 {
+    padding: 10px;
+    height: 70px;
+    > h1 {
         font-family: 'bebas neue';
         font-weight: normal;
     }
 }
 
 main {
-    section {
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
+    font-size: .9rem;
+    margin-bottom: 100px;
+    > section {
         display: flex;
         flex-flow: column wrap;
         justify-content: center;
         align-items: center;
-        article {
+        > article {
             display: flex;
             flex-flow: column wrap;
             justify-content: center;
             align-items: center;
             img {
-                width: 280px;
+                width: 80%;
             }
             figcaption {
                 width: max-content;
+                margin-bottom: 15px;
+            }
+            p {
+                text-align: center;
+                font-size: .85rem;
+                a {
+                    text-decoration: none;
+                }
+            }
+            p:last-child {
+                margin-top: 20px;
             }
         }
     }
 }
 
 footer {
-    
+    text-align: center;
+    padding: 20px;
+    height: 350px;
+    > section {
+        height: 300px;
+        > section {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: space-around;
+            align-items: center;
+            height: 100px;
+            > p {
+                > a {
+                    color: black;
+                }
+                &#info-backstage-email *{
+                    text-decoration: none;
+                    margin: 0;
+                }
+            }
+        }
+        > p {
+            margin: 30px 0px;
+            a {
+                color: black;
+            }
+            &#backstage-description{
+                margin-bottom: 10px;
+            }
+            &#publisher {
+                margin-top: 0px;
+                font-weight: lighter;
+                font-size: .8rem;
+            }
+        }
+    }
 }

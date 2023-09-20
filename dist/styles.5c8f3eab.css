@@ -1,33 +1,111 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap");
 * {
-  font-family: "open sans";
+  font-family: "Open sans";
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+body {
+  transition: background-color linear 0.5s;
+  background-color: #ff608c;
+}
+body #line {
+  z-index: 99;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 40px;
+  height: 1px;
+  display: none;
+}
+body a {
+  color: white;
+  transition: color linear 0.5s;
 }
 
 header {
-  padding: 10px 10px 10px 20px;
+  padding: 10px;
+  height: 70px;
 }
-header h1 {
+header > h1 {
   font-family: "bebas neue";
   font-weight: normal;
 }
 
-main section {
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  font-size: 0.9rem;
+  margin-bottom: 100px;
+}
+main > section {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
 }
-main section article {
+main > section > article {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
 }
-main section article img {
-  width: 280px;
+main > section > article img {
+  width: 80%;
 }
-main section article figcaption {
+main > section > article figcaption {
   width: max-content;
+  margin-bottom: 15px;
+}
+main > section > article p {
+  text-align: center;
+  font-size: 0.85rem;
+}
+main > section > article p a {
+  text-decoration: none;
+}
+main > section > article p:last-child {
+  margin-top: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  height: 350px;
+}
+footer > section {
+  height: 300px;
+}
+footer > section > section {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+footer > section > section > p > a {
+  color: black;
+}
+footer > section > section > p#info-backstage-email * {
+  text-decoration: none;
+  margin: 0;
+}
+footer > section > p {
+  margin: 30px 0px;
+}
+footer > section > p a {
+  color: black;
+}
+footer > section > p#backstage-description {
+  margin-bottom: 10px;
+}
+footer > section > p#publisher {
+  margin-top: 0px;
+  font-weight: lighter;
+  font-size: 0.8rem;
 }
 
 /*# sourceMappingURL=/styles.5c8f3eab.css.map */

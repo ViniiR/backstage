@@ -1,0 +1,33 @@
+body p * {
+  font-size: 1rem;
+}
+
+header h1 {
+  font-size: 3rem;
+}
+
+main section article img {
+  width: 420px;
+}
+
+footer > section > section {
+  flex-direction: row;
+  justify-content: space-between;
+  height: 50px;
+}
+footer > section > p#backstage-description {
+  height: max-content;
+  width: 180px;
+  text-align: left;
+}
+footer > section > p#publisher {
+  text-align: left;
+}
+footer > section > p#publisher * {
+  font-size: 0.7rem;
+}
+footer > section > p#privacy-policy {
+  text-align: left;
+}
+
+/*# sourceMappingURL=/tablet.52dea631.css.map */

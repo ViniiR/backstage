@@ -120,8 +120,58 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"src/index.js":[function(require,module,exports) {
 "use strict";
 
-window.addEventListener("load", function () {
-  this.document.body.style.backgroundColor = "pink";
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+var anchors = document.querySelectorAll('main a');
+var sections = {
+  section: document.querySelectorAll(".book"),
+  colors: ["#ff608c", "#ffffff", "#00c1b5", "#ff6519", "#ffbe00", "#1d3fbb", "#E30512"]
+};
+var setAnchorColors = function setAnchorColors(anchors) {
+  var color = document.body.style.backgroundColor === 'rgb(255, 255, 255)' ? "#ff608c" : "#ffffff";
+  anchors.forEach(function (anchor) {
+    anchor.style.color = color;
+  });
+};
+var checkDifference = function checkDifference(line, sections) {
+  var closestValue = sections[0];
+  var minDifference = Math.abs(sections[0] - line);
+  for (var i = 0; i < sections.length; i++) {
+    var difference = Math.abs(sections[i] - line);
+    if (difference < minDifference) {
+      minDifference = difference;
+      closestValue = sections[i];
+    }
+  }
+  return closestValue;
+};
+var setBackgroundColor = function setBackgroundColor(sectionPositions, colors, currentSection) {
+  var currentSectionPosition = currentSection;
+  for (var i = 0; i < sectionPositions.length; i++) {
+    if (currentSection == sectionPositions[i]) currentSectionPosition = i;
+  }
+  return colors[currentSectionPosition];
+};
+window.addEventListener("scroll", function () {
+  var positions = [];
+  var line = this.document.querySelector("#line");
+  var linePosition = line.getBoundingClientRect().top;
+  var _iterator = _createForOfIteratorHelper(sections.section),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var section = _step.value;
+      positions.push(section.getBoundingClientRect().top);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  var closestSection = checkDifference(linePosition, positions);
+  document.body.style.backgroundColor = setBackgroundColor(positions, sections.colors, closestSection);
+  setAnchorColors(anchors);
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -148,7 +198,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51017" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58251" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
