@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap");
+* {
+  font-family: "open sans";
+}
+
+header {
+  padding: 10px 10px 10px 20px;
+}
+header h1 {
+  font-family: "bebas neue";
+  font-weight: normal;
+}
+
+main section {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+main section article {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+main section article img {
+  width: 280px;
+}
+main section article figcaption {
+  width: max-content;
+}
+
+/*# sourceMappingURL=/styles.5c8f3eab.css.map */

@@ -1,0 +1,40 @@
+@charset 'UTF-8';
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap');
+
+* {
+    font-family: 'open sans';
+}
+
+header {
+    padding: 10px 10px 10px 20px;
+    h1 {
+        font-family: 'bebas neue';
+        font-weight: normal;
+    }
+}
+
+main {
+    section {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        article {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 280px;
+            }
+            figcaption {
+                width: max-content;
+            }
+        }
+    }
+}
+
+footer {
+    
+}
