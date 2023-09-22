@@ -153,30 +153,26 @@ var setBackgroundColor = function setBackgroundColor(sectionPositions, colors, c
   }
   return colors[currentSectionPosition];
 };
-setInterval(function () {
-  if (window.screen.availWidth >= 1024) {} else {
-    window.addEventListener("scroll", function () {
-      var positions = [];
-      var line = this.document.querySelector("#line");
-      var linePosition = line.getBoundingClientRect().top;
-      var _iterator = _createForOfIteratorHelper(sections.section),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var section = _step.value;
-          positions.push(section.getBoundingClientRect().top);
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-      var closestSection = getClosestSection(linePosition, positions);
-      document.body.style.backgroundColor = setBackgroundColor(positions, sections.colors, closestSection);
-      setAnchorColors(anchors);
-    });
+window.addEventListener("scroll", function () {
+  var positions = [];
+  var line = this.document.querySelector("#line");
+  var linePosition = line.getBoundingClientRect().top;
+  var _iterator = _createForOfIteratorHelper(sections.section),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var section = _step.value;
+      positions.push(section.getBoundingClientRect().top);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
   }
-}, 1000);
+  var closestSection = getClosestSection(linePosition, positions);
+  document.body.style.backgroundColor = setBackgroundColor(positions, sections.colors, closestSection);
+  setAnchorColors(anchors);
+});
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -202,7 +198,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51597" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49766" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

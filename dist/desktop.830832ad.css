@@ -1,3 +1,9 @@
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  transition: scroll-behavior 0.5s;
+}
+
 body #issue-list {
   position: fixed;
   right: 20px;
@@ -15,7 +21,12 @@ header > h1 {
 
 main {
   padding-top: 200px;
-  height: 5500px;
+  height: 6600px;
+  gap: 300px;
+}
+main > section {
+  scroll-snap-align: center;
+  scroll-behavior: smooth;
 }
 
 footer {

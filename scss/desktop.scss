@@ -1,4 +1,10 @@
 
+html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    transition: scroll-behavior .5s;
+}
+
 body {
     #issue-list {
         position: fixed;
@@ -20,7 +26,12 @@ header {
 
 main {
     padding-top: 200px;
-    height: 5500px;
+    height: 6600px;
+    gap: 300px;
+    > section {
+        scroll-snap-align: center;
+        scroll-behavior: smooth;
+    }
 }
 
 footer {

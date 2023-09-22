@@ -44,20 +44,14 @@ const setBackgroundColor = (sectionPositions, colors, currentSection) => {
     return colors[currentSectionPosition];
 };
 
-setInterval(() => {
-    if (window.screen.availWidth >= 1024) {
-
-    } else {
-        window.addEventListener("scroll", function () {
-            const positions = [];
-            const line = this.document.querySelector("#line");
-            const linePosition = line.getBoundingClientRect().top;
-            for (const section of sections.section) {
-                positions.push(section.getBoundingClientRect().top);
-            }
-            const closestSection = getClosestSection(linePosition, positions);
-            document.body.style.backgroundColor = setBackgroundColor(positions, sections.colors, closestSection)
-            setAnchorColors(anchors);
-        });
+window.addEventListener("scroll", function () {
+    const positions = [];
+    const line = this.document.querySelector("#line");
+    const linePosition = line.getBoundingClientRect().top;
+    for (const section of sections.section) {
+        positions.push(section.getBoundingClientRect().top);
     }
-}, 1000);
+    const closestSection = getClosestSection(linePosition, positions);
+    document.body.style.backgroundColor = setBackgroundColor(positions, sections.colors, closestSection)
+    setAnchorColors(anchors);
+});
