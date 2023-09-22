@@ -22,6 +22,9 @@ body {
         height: 1px;
         display: none;
     }
+    #issue-list {
+        display: none;
+    }
     a {
         color: white;
         transition: color linear .5s;

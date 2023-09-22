@@ -22,7 +22,7 @@ const setAnchorColors = (anchors) => {
     });
 }
 
-const checkDifference = (line, sections) => {
+const getClosestSection = (line, sections) => {
     let closestValue = sections[0];
     let minDifference = Math.abs(sections[0] - line);
     for (let i = 0; i < sections.length; i++) {
@@ -44,14 +44,20 @@ const setBackgroundColor = (sectionPositions, colors, currentSection) => {
     return colors[currentSectionPosition];
 };
 
-window.addEventListener("scroll", function () {
-    let positions = [];
-    const line = this.document.querySelector("#line");
-    const linePosition = line.getBoundingClientRect().top;
-    for (let section of sections.section) {
-        positions.push(section.getBoundingClientRect().top);
+setInterval(() => {
+    if (window.screen.availWidth >= 1024) {
+
+    } else {
+        window.addEventListener("scroll", function () {
+            const positions = [];
+            const line = this.document.querySelector("#line");
+            const linePosition = line.getBoundingClientRect().top;
+            for (const section of sections.section) {
+                positions.push(section.getBoundingClientRect().top);
+            }
+            const closestSection = getClosestSection(linePosition, positions);
+            document.body.style.backgroundColor = setBackgroundColor(positions, sections.colors, closestSection)
+            setAnchorColors(anchors);
+        });
     }
-    const closestSection = checkDifference(linePosition, positions);
-    document.body.style.backgroundColor = setBackgroundColor(positions, sections.colors, closestSection)
-    setAnchorColors(anchors);
-});
+}, 1000);

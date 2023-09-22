@@ -20,6 +20,9 @@ body #line {
   height: 1px;
   display: none;
 }
+body #issue-list {
+  display: none;
+}
 body a {
   color: white;
   transition: color linear 0.5s;

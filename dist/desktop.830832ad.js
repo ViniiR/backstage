@@ -117,67 +117,62 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/index.js":[function(require,module,exports) {
-"use strict";
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-var anchors = document.querySelectorAll('main a');
-var sections = {
-  section: document.querySelectorAll(".book"),
-  colors: ["#ff608c", "#ffffff", "#00c1b5", "#ff6519", "#ffbe00", "#1d3fbb", "#E30512"]
-};
-var setAnchorColors = function setAnchorColors(anchors) {
-  var color = document.body.style.backgroundColor === 'rgb(255, 255, 255)' ? "#ff608c" : "#ffffff";
-  anchors.forEach(function (anchor) {
-    anchor.style.color = color;
-  });
-};
-var getClosestSection = function getClosestSection(line, sections) {
-  var closestValue = sections[0];
-  var minDifference = Math.abs(sections[0] - line);
-  for (var i = 0; i < sections.length; i++) {
-    var difference = Math.abs(sections[i] - line);
-    if (difference < minDifference) {
-      minDifference = difference;
-      closestValue = sections[i];
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+  return bundleURL;
+}
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+    if (matches) {
+      return getBaseURL(matches[0]);
     }
   }
-  return closestValue;
-};
-var setBackgroundColor = function setBackgroundColor(sectionPositions, colors, currentSection) {
-  var currentSectionPosition = currentSection;
-  for (var i = 0; i < sectionPositions.length; i++) {
-    if (currentSection == sectionPositions[i]) currentSectionPosition = i;
+  return '/';
+}
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+function updateLink(link) {
+  var newLink = link.cloneNode();
+  newLink.onload = function () {
+    link.remove();
+  };
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+var cssTimeout = null;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
   }
-  return colors[currentSectionPosition];
-};
-setInterval(function () {
-  if (window.screen.availWidth >= 1024) {} else {
-    window.addEventListener("scroll", function () {
-      var positions = [];
-      var line = this.document.querySelector("#line");
-      var linePosition = line.getBoundingClientRect().top;
-      var _iterator = _createForOfIteratorHelper(sections.section),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var section = _step.value;
-          positions.push(section.getBoundingClientRect().top);
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
       }
-      var closestSection = getClosestSection(linePosition, positions);
-      document.body.style.backgroundColor = setBackgroundColor(positions, sections.colors, closestSection);
-      setAnchorColors(anchors);
-    });
-  }
-}, 1000);
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+    }
+    cssTimeout = null;
+  }, 50);
+}
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"scss/desktop.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -346,5 +341,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
-//# sourceMappingURL=/src.a2b27638.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/desktop.830832ad.js.map

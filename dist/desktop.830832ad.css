@@ -1,0 +1,35 @@
+body #issue-list {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  height: 220px;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header > h1 {
+  position: fixed;
+}
+
+main {
+  padding-top: 200px;
+  height: 5500px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 280px;
+}
+footer > section > p#backstage-description {
+  width: 250px;
+}
+footer > section > section p#info-backstage-email {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+/*# sourceMappingURL=/desktop.830832ad.css.map */
